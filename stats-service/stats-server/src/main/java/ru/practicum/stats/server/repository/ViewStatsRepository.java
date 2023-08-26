@@ -15,7 +15,7 @@ public interface ViewStatsRepository extends JpaRepository<Stats, Long> {
     @Query("SELECT new ru.practicum.stats.dto.model.ViewStatsDto(stats.app, stats.uri, COUNT(stats.ip)) " +
             "FROM Stats AS stats " +
             "WHERE stats.timestamp BETWEEN :start AND :end " +
-            "AND stats.uri IN :uris OR :uris IS NULL " +
+            "AND (coalesce(:uris, null) IS NULL OR stats.uri IN :uris) " +
             "GROUP BY stats.app, stats.uri " +
             "ORDER BY 3 DESC ")
     List<ViewStatsDto> findStats(LocalDateTime start, LocalDateTime end, List<String> uris);
@@ -23,7 +23,7 @@ public interface ViewStatsRepository extends JpaRepository<Stats, Long> {
     @Query("SELECT new ru.practicum.stats.dto.model.ViewStatsDto(stats.app, stats.uri, COUNT(distinct stats.ip)) " +
             "FROM Stats AS stats " +
             "WHERE stats.timestamp BETWEEN :start AND :end " +
-            "AND stats.uri IN :uris OR :uris IS NULL " +
+            "AND (coalesce(:uris, null) IS NULL OR stats.uri IN :uris) " +
             "GROUP BY stats.app, stats.uri " +
             "ORDER BY 3 DESC ")
     List<ViewStatsDto> findUniqueStats(LocalDateTime start, LocalDateTime end, List<String> uris);
