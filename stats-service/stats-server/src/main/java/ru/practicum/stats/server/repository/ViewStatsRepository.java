@@ -20,7 +20,7 @@ public interface ViewStatsRepository extends JpaRepository<Stats, Long> {
             "ORDER BY 3 DESC ")
     List<ViewStatsDto> findStats(LocalDateTime start, LocalDateTime end, List<String> uris);
 
-   @Query("SELECT new ru.practicum.stats.dto.model.ViewStatsDto(stats.app, stats.uri, COUNT(distinct stats.ip)) " +
+    @Query("SELECT new ru.practicum.stats.dto.model.ViewStatsDto(stats.app, stats.uri, COUNT(distinct stats.ip)) " +
             "FROM Stats AS stats " +
             "WHERE stats.timestamp BETWEEN :start AND :end " +
             "AND stats.uri IN :uris OR :uris IS NULL " +

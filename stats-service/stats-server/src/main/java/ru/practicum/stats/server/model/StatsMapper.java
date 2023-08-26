@@ -6,13 +6,13 @@ import ru.practicum.stats.dto.model.EndpointHitDto;
 @UtilityClass
 public class StatsMapper {
 
-       public Stats toViewStats(EndpointHitDto endpoint){
-              return Stats.builder()
-                      .uri(endpoint.getUri())
-                      .app(endpoint.getApp())
-                      .ip(endpoint.getIp())
-                      .timestamp(endpoint.getTimestamp())
-                      .build();
-       }
+    public Stats toViewStats(EndpointHitDto endpoint) {
+        return Stats.builder()
+                .uri(endpoint.getUri())
+                .app(endpoint.getApp())
+                .ip(endpoint.getIp())
+                .timestamp(endpoint.getTimestamp())
+                .build();
+    }
 
 }

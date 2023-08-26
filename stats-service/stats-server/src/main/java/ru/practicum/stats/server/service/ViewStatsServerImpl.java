@@ -3,10 +3,10 @@ package ru.practicum.stats.server.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.stats.dto.model.EndpointHitDto;
 import ru.practicum.stats.dto.model.ViewStatsDto;
 import ru.practicum.stats.server.model.StatsMapper;
 import ru.practicum.stats.server.repository.ViewStatsRepository;
-import ru.practicum.stats.dto.model.EndpointHitDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class ViewStatsServerImpl implements  ViewStatsService {
+public class ViewStatsServerImpl implements ViewStatsService {
 
     private final ViewStatsRepository statsRepository;
 
