@@ -33,7 +33,7 @@ public class ViewStatsController {
     @GetMapping(Constants.STATS_ENDPOINT)
     public List<ViewStatsDto> getStats(@RequestParam String start,
                                        @RequestParam String end,
-                                       @RequestParam(required = false, defaultValue = "false") Boolean unique,
+                                       @RequestParam(defaultValue = "false") Boolean unique,
                                        @RequestParam(required = false) List<String> uris) {
         log.info(Messages.getStats(start, end, uris, unique));
         LocalDateTime startTime = LocalDateTime.parse(URLDecoder.decode(start, Charset.defaultCharset()));
