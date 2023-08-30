@@ -8,7 +8,9 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class EndpointHitDto {
 
     @NotBlank
