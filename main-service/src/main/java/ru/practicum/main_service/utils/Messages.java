@@ -22,7 +22,8 @@ public class Messages {
     public String addCategory(){
         return "Запрос на создание категории";
     }
-    public String pathCategory(Long id) {
+
+    public String patchCategory(Long id) {
         return String.format("Запрос на изменение пользователя: id = %d", id);
     }
 
@@ -36,6 +37,46 @@ public class Messages {
 
     public String getAllCategories(){
         return "Запрос на получение всех категорий";
+    }
+
+    public String getPublicEvent(Long id){
+        return String.format("Запрос на получение события: id = %d", id);
+    }
+
+    public String getPublicEvents(){
+        return "Запрос на получение событий";
+    }
+
+    public String getAdminEvents(){
+        return "Запрос на поиск событий";
+    }
+
+    public String patсhEvent(Long eventId) {
+        return String.format("Запрос на изменение события: event_id = %d", eventId);
+    }
+
+    public String getPrivateEvents(Long userId){
+        return String.format("Запрос на получение событий добавленных пользователем: user_id = %d", userId);
+    }
+
+    public String addEvent(Long userId){
+        return String.format("Запрос на добавление события: user_id = %d", userId);
+    }
+
+    public String getPrivateEvent(Long userId, Long eventId){
+        return String.format("Запрос на получение события: user_id = %d event_id = %d", userId, eventId);
+    }
+
+    public String pathEvent(Long userId, Long eventId){
+        return String.format("Запрос на изменение события: user_id = %d event_id = %d", userId, eventId);
+    }
+
+    public String getEventRequests(Long userId, Long eventId){
+        return String.format("Запрос на получение информации о запросах: user_id = %d event_id = %d", userId, eventId);
+    }
+
+    public String pathEventRequests(Long userId, Long eventId){
+        return String.format("Запрос на изменение статуса запросов: user_id = %d event_id = %d", userId, eventId);
     }
 
 }

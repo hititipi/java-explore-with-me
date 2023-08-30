@@ -14,5 +14,7 @@ public class Constants {
     public static final int MAX_LENGTH_EVENT_DESCRIPTION = 7000;
     public static final int MIN_LENGTH_EVENT_TITLE = 3;
     public static final int MAX_LENGTH_EVENT_TITLE = 120;
+    public static final int EVENT_TIME_LIMIT = 2;
+    public static final int EVENT_PATH_TIME_LIMIT = 1;
 }
 

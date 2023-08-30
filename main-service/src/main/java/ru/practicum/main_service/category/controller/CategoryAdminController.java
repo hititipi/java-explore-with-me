@@ -30,7 +30,7 @@ public class CategoryAdminController {
     @ResponseStatus(HttpStatus.OK)
     public CategoryDto patch(@PathVariable long catId,
                              @Valid @RequestBody CategoryDto categoryDto) {
-        log.info(Messages.pathCategory(catId));
+        log.info(Messages.patchCategory(catId));
         return categoryService.patchCategory(catId, categoryDto);
     }
 
