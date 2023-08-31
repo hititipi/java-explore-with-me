@@ -1,6 +1,9 @@
 package ru.practicum.main_service.event.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import ru.practicum.main_service.category.model.Category;
@@ -32,7 +35,7 @@ public class Event {
     @Column(nullable = false, length = MAX_LENGTH_EVENT_DESCRIPTION)
     String description;
     @Column(nullable = false)
-    Boolean paid;
+    Boolean paid = false;
     @Column(nullable = false)
     Integer participantLimit;
 
@@ -58,6 +61,6 @@ public class Event {
     User initiator;
 
     @Column(nullable = false)
-    Boolean requestModeration;
+    Boolean requestModeration = true;
 
 }

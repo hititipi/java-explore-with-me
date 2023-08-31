@@ -58,14 +58,24 @@ public class EventServiceImpl implements EventService {
             String text, List<Long> categories, Boolean paid, LocalDateTime rangeStart, LocalDateTime rangeEnd,
             Boolean onlyAvailable, EventSortType sort, Pageable pageable, HttpServletRequest request) {
         checkStartIsBeforeEnd(rangeStart, rangeEnd);
+        List<Event> all = eventRepository.findAll();
+        System.out.println("ALLL " + all.size());
+        all = eventRepository.findAllByPublic1(text, categories, onlyAvailable);
+        System.out.println("ALLL1 " + all.size());
+        all = eventRepository.findAllByPublic2(text, categories, paid, onlyAvailable);
+        System.out.println("ALLL1 " + all.size());
+        all = eventRepository.findAllByPublic3(text, categories, paid, rangeStart, onlyAvailable);
+        System.out.println("ALLL1 " + all.size());
+        // List<Event> oldEvents = eventRepository.findAllByPublic(pageable, text, categories, paid, rangeStart, rangeEnd, onlyAvailable);
+        //System.out.println("OLD " + oldEvents.size());
+
         List<Event> events = eventRepository.findAllByPublic(text, categories, paid, rangeStart, rangeEnd, onlyAvailable, pageable);
         log.info("EVENTS: " + events.size() + "  " + events);
         return toEventsShortDto(events);
     }
 
     @Override
-    public List<EventFullDto> getEventsByAdmin(List<Long> users, List<EventState> states, List<Long> categories,
-                                               LocalDateTime rangeStart, LocalDateTime rangeEnd, Integer from, Integer size) {
+    public List<EventFullDto> getEventsByAdmin(List<Long> users, List<EventState> states, List<Long> categories, LocalDateTime rangeStart, LocalDateTime rangeEnd, Integer from, Integer size) {
         checkStartIsBeforeEnd(rangeStart, rangeEnd);
         Pageable page = PageRequest.of(from / size, size);
         List<Event> events = eventRepository.findAllByAdmin(page, users, states, categories, rangeStart, rangeEnd);

@@ -42,7 +42,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "and (coalesce(:text, null) is null or (lower(e.annotation) like lower(concat('%', :text, '%')) or lower(e.description) like lower(concat('%', :text, '%')))) " +
             "and (coalesce(:categoryIds, null) is null or e.category.id in :categoryIds) " +
             "and (coalesce(:paid, null) is null or e.paid = :paid) " +
-            "and e.eventDate >= :rangeStart " +
+            //"and e.eventDate >= :rangeStart " +
+            "and (coalesce(:rangeStart, null) is null or e.eventDate >= :rangeStart) " +
             "and (coalesce(:rangeEnd, null) is null or e.eventDate <= :rangeEnd) " +
             "and (:onlyAvailable = false or e.id in " +
             "(select r.event.id " +
@@ -55,6 +56,78 @@ public interface EventRepository extends JpaRepository<Event, Long> {
                                 @Param("categoryIds") List<Long> categoryIds,
                                 @Param("paid") Boolean paid, @Param("rangeStart") LocalDateTime rangeStart,
                                 @Param("rangeEnd") LocalDateTime rangeEnd, @Param("onlyAvailable") Boolean onlyAvailable, Pageable pageable);
+
+
+    @Query("select e from Event e " +
+            "where e.state = 'PUBLISHED' " +
+            "and (coalesce(:text, null) is null or (lower(e.annotation) like lower(concat('%', :text, '%')) or lower(e.description) like lower(concat('%', :text, '%')))) " +
+            "and (coalesce(:categoryIds, null) is null or e.category.id in :categoryIds) " +
+            "and (:onlyAvailable = false or e.id in " +
+            "(select r.event.id " +
+            "from Request r " +
+            "where r.status = 'CONFIRMED' " +
+            "group by r.event.id " +
+            "having e.participantLimit - count(id) > 0 " +
+            "order by count(r.id))) ")
+    List<Event> findAllByPublic1(@Param("text") String text,
+                                 @Param("categoryIds") List<Long> categoryIds,
+                                 Boolean onlyAvailable);
+
+    @Query("select e from Event e " +
+            "where e.state = 'PUBLISHED' " +
+            "and (coalesce(:text, null) is null or (lower(e.annotation) like lower(concat('%', :text, '%')) or lower(e.description) like lower(concat('%', :text, '%')))) " +
+            "and (coalesce(:categoryIds, null) is null or e.category.id in :categoryIds) " +
+            "and (coalesce(:paid, null) is null or e.paid = :paid) " +
+            "and (:onlyAvailable = false or e.id in " +
+            "(select r.event.id " +
+            "from Request r " +
+            "where r.status = 'CONFIRMED' " +
+            "group by r.event.id " +
+            "having e.participantLimit - count(id) > 0 " +
+            "order by count(r.id))) ")
+    List<Event> findAllByPublic2(@Param("text") String text,
+                                 @Param("categoryIds") List<Long> categoryIds,
+                                 @Param("paid") Boolean paid,
+                                 @Param("onlyAvailable") Boolean onlyAvailable);
+
+    @Query("select e from Event e " +
+            "where e.state = 'PUBLISHED' " +
+            "and (coalesce(:text, null) is null or (lower(e.annotation) like lower(concat('%', :text, '%')) or lower(e.description) like lower(concat('%', :text, '%')))) " +
+            "and (coalesce(:categoryIds, null) is null or e.category.id in :categoryIds) " +
+            "and (coalesce(:paid, null) is null or e.paid = :paid) " +
+            "and (coalesce(:rangeStart, null) is null or e.eventDate >= :rangeStart) " +
+            //" AND (e.eventDate >= CAST(:rangeStart AS timestamp )) " +
+            //"and e.eventDate >= :rangeStart " +
+            "and (:onlyAvailable = false or e.id in " +
+            "(select r.event.id " +
+            "from Request r " +
+            "where r.status = 'CONFIRMED' " +
+            "group by r.event.id " +
+            "having e.participantLimit - count(id) > 0 " +
+            "order by count(r.id))) ")
+    List<Event> findAllByPublic3(@Param("text") String text,
+                                 @Param("categoryIds") List<Long> categoryIds,
+                                 @Param("paid") Boolean paid,
+                                 @Param("rangeStart") LocalDateTime rangeStart,
+                                 @Param("onlyAvailable") Boolean onlyAvailable);
+
+
+  /*  @Query("FROM Event AS e WHERE (:text IS NULL OR LOWER(e.annotation) LIKE LOWER(CONCAT('%', :text, '%')) OR LOWER(e.description) LIKE LOWER(CONCAT('%', :text, '%'))) " +
+            "AND (:categories IS NULL OR e.category.id IN (:categories)) " +
+            "AND (:paid IS NULL OR e.paid IN :paid) " +
+            "AND (:rangeStart IS NULL OR e.eventDate >= CAST(:rangeStart AS timestamp )) " +
+            "AND (:rangeEnd IS NULL OR e.eventDate <= CAST(:rangeEnd AS timestamp ) ) " +
+            "AND (:onlyAvailable = FALSE OR (e.participantLimit = 0 OR e.requestModeration = FALSE)) " +
+            "AND (e.state = 'PUBLISHED') " +
+            "AND ((:rangeStart IS NULL AND :rangeEnd IS NULL) OR (e.eventDate >= now()) )")
+    List<Event> findAllByPublic(Pageable page,
+                                String text,
+                                List<Long> categories,
+                                Boolean paid,
+                                LocalDateTime rangeStart,
+                                LocalDateTime rangeEnd,
+                                Boolean onlyAvailable);*/
+
 
 
 }
