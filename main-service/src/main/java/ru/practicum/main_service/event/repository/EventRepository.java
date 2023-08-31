@@ -29,7 +29,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "and (coalesce(:categoryIds, null) is null or e.category.id in :categoryIds) " +
             "and (coalesce(:rangeStart, null) is null or e.eventDate >= :rangeStart) " +
             "and (coalesce(:rangeEnd, null) is null or e.eventDate <= :rangeEnd) ")
-    List<Event> findByAdmin(Pageable pageable,
+    List<Event> findAllByAdmin(Pageable pageable,
                             @Param("userIds") List<Long> userIds,
                             @Param("states") List<EventState> states,
                             @Param("categoryIds") List<Long> categoryIds,
