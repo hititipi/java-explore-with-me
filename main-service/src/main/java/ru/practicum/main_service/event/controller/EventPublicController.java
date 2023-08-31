@@ -51,7 +51,7 @@ public class EventPublicController {
             @RequestParam(defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,
             @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) @Positive Integer size,
             HttpServletRequest request) {
-        log.info(Messages.getPublicEvents());
+        log.info(Messages.getPublicEvents() + "   "  + size);
         return eventService.getEventsByPublic(text, categories, paid, rangeStart, rangeEnd, onlyAvailable,
                 sort, PageRequest.of(from / size, size), request);
     }

@@ -58,7 +58,8 @@ public class EventServiceImpl implements EventService {
             String text, List<Long> categories, Boolean paid, LocalDateTime rangeStart, LocalDateTime rangeEnd,
             Boolean onlyAvailable, EventSortType sort, Pageable pageable, HttpServletRequest request) {
         checkStartIsBeforeEnd(rangeStart, rangeEnd);
-        List<Event> events = eventRepository.findAllByPublic(pageable, text, categories, paid, rangeStart, rangeEnd, onlyAvailable);
+        List<Event> events = eventRepository.findAllByPublic(text, categories, paid, rangeStart, rangeEnd, onlyAvailable, pageable);
+        log.info("EVENTS: " + events.size() + "  " + events);
         return toEventsShortDto(events);
     }
 

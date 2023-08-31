@@ -51,11 +51,10 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "group by r.event.id " +
             "having e.participantLimit - count(id) > 0 " +
             "order by count(r.id))) ")
-    List<Event> findAllByPublic(Pageable pageable,
-                                @Param("text") String text,
+    List<Event> findAllByPublic(@Param("text") String text,
                                 @Param("categoryIds") List<Long> categoryIds,
                                 @Param("paid") Boolean paid, @Param("rangeStart") LocalDateTime rangeStart,
-                                @Param("rangeEnd") LocalDateTime rangeEnd, @Param("onlyAvailable") Boolean onlyAvailable
-    );
+                                @Param("rangeEnd") LocalDateTime rangeEnd, @Param("onlyAvailable") Boolean onlyAvailable, Pageable pageable);
+
 
 }
