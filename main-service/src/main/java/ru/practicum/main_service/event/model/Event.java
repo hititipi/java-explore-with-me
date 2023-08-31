@@ -51,8 +51,6 @@ public class Event {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User initiator;
-    @Column(name = "confirmed_requests")
-    private Long confirmedRequests;
     @Column(nullable = false)
     private Boolean requestModeration;
 
