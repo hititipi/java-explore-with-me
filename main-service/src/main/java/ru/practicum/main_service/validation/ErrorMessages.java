@@ -14,4 +14,12 @@ public class ErrorMessages {
     public static final String INVALID_DATES = "Неверно заданы даты";
     public static final String INVALID_TIME_LIMIT = "Время не может быть раньше, чем через два часа от текущего момента";
     public static final String INVALID_LIMIT = "Лимит уже достигнут";
+    public static final String REQUEST_SELF = "Заявка на участие в своем же событии";
+    public static final String REQUEST_NOT_PUBLISHED_EVENT = "Запрос на неопубликованное событие";
+    public static final String REPEATED_REQUEST = "Повторный запрос";
+    public static final String EXCEEDED_LIMIT = "Превышен лимит";
+    public static final String NOT_OWNER = "Пользователь не является владельцем.";
+    public static final String REQUEST_IS_NOT_WAITING = "Заявка не находится в статусе ожидания";
+
+
 }

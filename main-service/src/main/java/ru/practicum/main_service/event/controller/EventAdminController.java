@@ -46,8 +46,8 @@ public class EventAdminController {
     @PatchMapping("/{eventId}")
     @ResponseStatus(HttpStatus.OK)
     public EventFullDto patchEvent(@PathVariable Long eventId,
-                                          @Valid @RequestBody UpdateEventAdminRequest updateEventAdminRequest) {
-        log.info(Messages.patсhEvent(eventId));
+                                   @Valid @RequestBody UpdateEventAdminRequest updateEventAdminRequest) {
+        log.info(Messages.patchEvent(eventId));
         return eventService.patchEventByAdmin(eventId, updateEventAdminRequest);
     }
 }

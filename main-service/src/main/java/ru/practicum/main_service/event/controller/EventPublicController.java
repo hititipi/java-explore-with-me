@@ -33,7 +33,7 @@ public class EventPublicController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EventFullDto getEvent(@PathVariable Long id,
-                                         HttpServletRequest request) {
+                                 HttpServletRequest request) {
         log.info(Messages.getPublicEvent(id));
         return eventService.getEventByPublic(id, request);
     }

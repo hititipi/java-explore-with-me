@@ -42,7 +42,7 @@ public class EventPrivateController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EventFullDto createEvent(@PathVariable Long userId,
-                                             @Valid @RequestBody NewEventDto newEventDto) {
+                                    @Valid @RequestBody NewEventDto newEventDto) {
         log.info(Messages.addEvent(userId));
         return eventService.createEventByPrivate(userId, newEventDto);
     }
@@ -72,7 +72,7 @@ public class EventPrivateController {
             @PathVariable Long userId,
             @PathVariable Long eventId) {
         log.info(Messages.getEventRequests(userId, eventId));
-        return requestService.getEventRequestsByEventOwner(userId, eventId);
+        return requestService.getRequestsByEventOwner(userId, eventId);
     }
 
     @PatchMapping("/{eventId}/requests")
@@ -82,6 +82,6 @@ public class EventPrivateController {
             @PathVariable Long eventId,
             @Valid @RequestBody EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest) {
         log.info(Messages.pathEventRequests(userId, eventId));
-        return requestService.patchEventRequestsByEventOwner(userId, eventId, eventRequestStatusUpdateRequest);
+        return requestService.patchRequestsByEventOwner(userId, eventId, eventRequestStatusUpdateRequest);
     }
 }
