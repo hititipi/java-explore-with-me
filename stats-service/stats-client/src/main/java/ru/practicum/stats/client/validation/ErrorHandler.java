@@ -31,10 +31,10 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleInternalServerError(Throwable e) {
         log.error(e.getMessage(), e);
-        return new ErrorResponse(INTERNAL_SERVER_ERROR, e.getMessage());
+        return new ErrorResponse(BAD_REQUEST, e.getMessage());
     }
 
 }
