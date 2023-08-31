@@ -141,9 +141,7 @@ public class EventServiceImpl implements EventService {
         Location eventLocation = getOrSaveLocation(newEventDto.getLocation());
         Event newEvent = EventMapper.toEvent(newEventDto, eventUser, eventCategory, eventLocation, LocalDateTime.now(),
                 EventState.PENDING);
-        System.out.println("NEW EVENT: " + newEvent);
         Event ev = eventRepository.save(newEvent);
-        System.out.println("EVENT: " + ev);
         return toEventFullDto(ev);
     }
 

@@ -1,13 +1,22 @@
 package ru.practicum.main_service.validation;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
+import ru.practicum.main_service.utils.Constants;
 
-@RequiredArgsConstructor
+import java.time.LocalDateTime;
+
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ErrorResponse {
 
-    private final String error;
-    private final String description;
+    private String message;
+    private String reason;
+    private String status;
+    @JsonFormat(pattern = Constants.DATE_FORMAT)
+    private LocalDateTime timestamp;
 
 }
