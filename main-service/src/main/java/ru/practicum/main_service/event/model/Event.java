@@ -14,6 +14,7 @@ import static ru.practicum.main_service.utils.Constants.*;
 @Entity
 @Table(name = "events", schema = "public")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Event {
