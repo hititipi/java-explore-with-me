@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.validation.ConstraintViolationException;
 
 import static ru.practicum.stats.client.validation.ValidationErrors.BAD_REQUEST;
-import static ru.practicum.stats.client.validation.ValidationErrors.INTERNAL_SERVER_ERROR;
 
 @Slf4j
 @RestControllerAdvice
