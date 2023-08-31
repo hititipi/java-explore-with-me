@@ -30,12 +30,12 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "and (coalesce(:rangeStart, null) is null or e.eventDate >= :rangeStart) " +
             "and (coalesce(:rangeEnd, null) is null or e.eventDate <= :rangeEnd) ")
     List<Event> findAllByAdmin(Pageable pageable,
-                            @Param("userIds") List<Long> userIds,
-                            @Param("states") List<EventState> states,
-                            @Param("categoryIds") List<Long> categoryIds,
-                            @Param("rangeStart") LocalDateTime rangeStart,
-                            @Param("rangeEnd") LocalDateTime rangeEnd
-                            );
+                               @Param("userIds") List<Long> userIds,
+                               @Param("states") List<EventState> states,
+                               @Param("categoryIds") List<Long> categoryIds,
+                               @Param("rangeStart") LocalDateTime rangeStart,
+                               @Param("rangeEnd") LocalDateTime rangeEnd
+    );
 
     /*@Query("FROM Event AS e WHERE (:users IS NULL OR e.initiator.id IN (:users)) " +
             "AND (:states IS NULL OR CAST(e.state AS string ) IN (:states)) " +
@@ -63,12 +63,12 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "group by r.event.id " +
             "having e.participantLimit - count(id) > 0 " +
             "order by count(r.id))) ")
-    List<Event> findAllByPublic( Pageable pageable,
-                               @Param("text") String text,
-                               @Param("categoryIds") List<Long> categoryIds,
-                              @Param("paid") Boolean paid, @Param("rangeStart") LocalDateTime rangeStart,
-                              @Param("rangeEnd") LocalDateTime rangeEnd, @Param("onlyAvailable") Boolean onlyAvailable
-                             );
+    List<Event> findAllByPublic(Pageable pageable,
+                                @Param("text") String text,
+                                @Param("categoryIds") List<Long> categoryIds,
+                                @Param("paid") Boolean paid, @Param("rangeStart") LocalDateTime rangeStart,
+                                @Param("rangeEnd") LocalDateTime rangeEnd, @Param("onlyAvailable") Boolean onlyAvailable
+    );
 
    /* @Query("FROM Event AS e WHERE (:text IS NULL OR LOWER(e.annotation) LIKE LOWER(CONCAT('%', :text, '%')) OR LOWER(e.description) LIKE LOWER(CONCAT('%', :text, '%'))) " +
             "AND (:categories IS NULL OR e.category.id IN (:categories)) " +
