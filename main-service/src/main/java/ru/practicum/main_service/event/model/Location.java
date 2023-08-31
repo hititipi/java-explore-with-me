@@ -1,10 +1,8 @@
 package ru.practicum.main_service.event.model;
 
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "locations", schema = "public")

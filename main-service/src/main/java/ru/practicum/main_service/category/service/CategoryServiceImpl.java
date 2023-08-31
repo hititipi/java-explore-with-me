@@ -13,7 +13,6 @@ import ru.practicum.main_service.category.model.CategoryMapper;
 import ru.practicum.main_service.category.CategoryRepository;
 import ru.practicum.main_service.event.repository.EventRepository;
 import ru.practicum.main_service.validation.ConflitException;
-import ru.practicum.main_service.validation.ErrorMessages;
 import ru.practicum.main_service.validation.ValidationException;
 
 import java.util.List;
