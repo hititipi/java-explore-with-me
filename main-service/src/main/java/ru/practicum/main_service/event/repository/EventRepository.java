@@ -39,7 +39,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "AND (:rangeStart IS NULL OR e.eventDate >= CAST(:rangeStart AS timestamp )) " +
             "AND (:rangeEnd IS NULL OR e.eventDate <= CAST(:rangeEnd AS timestamp ) ) " +
             "AND (:onlyAvailable = FALSE OR (e.participantLimit = 0 OR e.requestModeration = FALSE OR e.participantLimit > e.confirmedRequests)) " +
-            "AND (E.state = 'PUBLISHED') " +
+            "AND (e.state = 'PUBLISHED') " +
             "AND ((:rangeStart IS NULL AND :rangeEnd IS NULL) OR (e.eventDate >= now()) )")
     List<Event> findAllByPublic(Pageable page,
                                 String text,
