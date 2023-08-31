@@ -17,7 +17,7 @@ public interface EventService {
 
     List<EventShortDto> getEventsByPublic(String text, List<Long> categories, Boolean paid, LocalDateTime rangeStart,
                                           LocalDateTime rangeEnd, Boolean onlyAvailable, EventSortType sort,
-                                          Integer from, Integer size, HttpServletRequest request);
+                                          Pageable pageable, HttpServletRequest request);
 
     List<EventFullDto> getEventsByAdmin(List<Long> users, List<EventState> states, List<Long> categories,
                                         LocalDateTime rangeStart, LocalDateTime rangeEnd, Integer from, Integer size);

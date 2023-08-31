@@ -56,10 +56,9 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<EventShortDto> getEventsByPublic(
             String text, List<Long> categories, Boolean paid, LocalDateTime rangeStart, LocalDateTime rangeEnd,
-            Boolean onlyAvailable, EventSortType sort, Integer from, Integer size, HttpServletRequest request) {
+            Boolean onlyAvailable, EventSortType sort, Pageable pageable, HttpServletRequest request) {
         checkStartIsBeforeEnd(rangeStart, rangeEnd);
-        Pageable page = PageRequest.of(from / size, size);
-        List<Event> events = eventRepository.findAllByPublic(page, text, categories, paid, rangeStart, rangeEnd, onlyAvailable);
+        List<Event> events = eventRepository.findAllByPublic(pageable, text, categories, paid, rangeStart, rangeEnd, onlyAvailable);
         return toEventsShortDto(events);
     }
 
@@ -110,6 +109,11 @@ public class EventServiceImpl implements EventService {
             if (updateEventAdminRequest.getStateAction() == EventStateAction.PUBLISH_EVENT) {
                 event.setState(EventState.PUBLISHED);
                 event.setPublishedOn(LocalDateTime.now());
+            } else if (updateEventAdminRequest.getStateAction() == EventStateAction.REJECT_EVENT){
+                if (event.getState().equals(EventState.PUBLISHED)) {
+                    throw new ConflitException("Событие можно отклонить, только если оно еще не опубликовано.");
+                }
+                event.setState(EventState.CANCELED);
             }
         }
         if (updateEventAdminRequest.getTitle() != null) {
