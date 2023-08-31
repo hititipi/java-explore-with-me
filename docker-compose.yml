@@ -44,6 +44,7 @@ services:
     depends_on:
       - ewm-db
     environment:
+      - ewm-server-port=8080
       - stats-server.url=http://stats-client:9090
       - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm_db:5432/ewm
       - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
