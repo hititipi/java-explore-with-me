@@ -33,7 +33,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
                                LocalDateTime rangeStart,
                                LocalDateTime rangeEnd);
 
-    @Query("FROM Event AS e WHERE (:text IS NULL OR LOWER(E.annotation) LIKE LOWER(CONCAT('%', :text, '%')) OR LOWER(e.description) LIKE LOWER(CONCAT('%', :text, '%'))) " +
+    @Query("FROM Event AS e WHERE (:text IS NULL OR LOWER(e.annotation) LIKE LOWER(CONCAT('%', :text, '%')) OR LOWER(e.description) LIKE LOWER(CONCAT('%', :text, '%'))) " +
             "AND (:categories IS NULL OR e.category.id IN (:categories)) " +
             "AND (:paid IS NULL OR e.paid IN :paid) " +
             "AND (:rangeStart IS NULL OR e.eventDate >= CAST(:rangeStart AS timestamp )) " +
