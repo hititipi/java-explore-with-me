@@ -2,7 +2,6 @@ package ru.practicum.main_service.event.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -64,9 +63,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventFullDto> getEventsByAdmin(List<Long> users, List<EventState> states, List<Long> categories, LocalDateTime rangeStart, LocalDateTime rangeEnd, Integer from, Integer size) {
+    public List<EventFullDto> getEventsByAdmin(List<Long> users, List<EventState> states, List<Long> categories, LocalDateTime rangeStart,
+                                               LocalDateTime rangeEnd, Pageable page) {
         checkStartIsBeforeEnd(rangeStart, rangeEnd);
-        Pageable page = PageRequest.of(from / size, size);
         List<Event> events = eventRepository.findAllByAdmin(page, users, states, categories, rangeStart, rangeEnd);
         return toEventsFullDto(events);
     }
@@ -110,9 +109,6 @@ public class EventServiceImpl implements EventService {
                 event.setState(EventState.PUBLISHED);
                 event.setPublishedOn(LocalDateTime.now());
             } else if (updateEventAdminRequest.getStateAction() == EventStateAction.REJECT_EVENT) {
-               /* if (event.getState().equals(EventState.PUBLISHED)) {
-                    throw new ConflitException("Событие можно отклонить, только если оно еще не опубликовано.");
-                }*/
                 event.setState(EventState.CANCELED);
             }
         }

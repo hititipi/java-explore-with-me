@@ -45,7 +45,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "AND (COALESCE(:rangeStart, NULL) IS NULL OR e.eventDate >= :rangeStart) " +
             "AND (COALESCE(:rangeEnd, NULL) IS NULL OR e.eventDate <= :rangeEnd) " +
             "AND (:onlyAvailable = false OR e.id IN " +
-            "(select r.event.id " +
+            "(SELECT r.event.id " +
             "FROM Request r " +
             "WHERE r.status = 'CONFIRMED' " +
             "GROUP BY r.event.id " +

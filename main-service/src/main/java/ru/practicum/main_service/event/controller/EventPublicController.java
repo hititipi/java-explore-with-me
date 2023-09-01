@@ -3,7 +3,6 @@ package ru.practicum.main_service.event.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -12,6 +11,7 @@ import ru.practicum.main_service.event.dto.EventFullDto;
 import ru.practicum.main_service.event.dto.EventShortDto;
 import ru.practicum.main_service.event.model.EventSortType;
 import ru.practicum.main_service.event.service.EventService;
+import ru.practicum.main_service.utils.EwmPageRequest;
 import ru.practicum.main_service.utils.Messages;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +53,7 @@ public class EventPublicController {
             HttpServletRequest request) {
         log.info(Messages.getPublicEvents() + "   "  + size);
         return eventService.getEventsByPublic(text, categories, paid, rangeStart, rangeEnd, onlyAvailable,
-                sort, PageRequest.of(from / size, size), request);
+                sort, EwmPageRequest.of(from, size), request);
     }
 
 }

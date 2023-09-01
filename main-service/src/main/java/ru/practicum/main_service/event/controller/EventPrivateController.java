@@ -2,13 +2,13 @@ package ru.practicum.main_service.event.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.main_service.event.dto.*;
 import ru.practicum.main_service.event.service.EventService;
 import ru.practicum.main_service.event.service.RequestService;
+import ru.practicum.main_service.utils.EwmPageRequest;
 import ru.practicum.main_service.utils.Messages;
 
 import javax.validation.Valid;
@@ -36,7 +36,7 @@ public class EventPrivateController {
             @RequestParam(defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,
             @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) @Positive Integer size) {
         log.info(Messages.getPrivateEvents(userId));
-        return eventService.getAllEventsByPrivate(userId, PageRequest.of(from / size, size));
+        return eventService.getAllEventsByPrivate(userId, EwmPageRequest.of(from, size));
     }
 
     @PostMapping

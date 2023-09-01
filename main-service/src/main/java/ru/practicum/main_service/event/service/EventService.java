@@ -20,7 +20,7 @@ public interface EventService {
                                           Pageable pageable, HttpServletRequest request);
 
     List<EventFullDto> getEventsByAdmin(List<Long> users, List<EventState> states, List<Long> categories,
-                                        LocalDateTime rangeStart, LocalDateTime rangeEnd, Integer from, Integer size);
+                                        LocalDateTime rangeStart, LocalDateTime rangeEnd, Pageable pageable);
 
     EventFullDto patchEventByAdmin(Long eventId, UpdateEventAdminRequest updateEventAdminRequest);
 

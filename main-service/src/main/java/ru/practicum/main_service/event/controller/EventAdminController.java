@@ -11,6 +11,7 @@ import ru.practicum.main_service.event.dto.EventFullDto;
 import ru.practicum.main_service.event.dto.UpdateEventAdminRequest;
 import ru.practicum.main_service.event.model.EventState;
 import ru.practicum.main_service.event.service.EventService;
+import ru.practicum.main_service.utils.EwmPageRequest;
 import ru.practicum.main_service.utils.Messages;
 
 import javax.validation.Valid;
@@ -40,7 +41,7 @@ public class EventAdminController {
             @RequestParam(required = false, defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,
             @RequestParam(required = false, defaultValue = DEFAULT_PAGE_SIZE) @Positive Integer size) {
         log.info(Messages.getAdminEvents());
-        return eventService.getEventsByAdmin(users, states, categories, rangeStart, rangeEnd, from, size);
+        return eventService.getEventsByAdmin(users, states, categories, rangeStart, rangeEnd, EwmPageRequest.of(from, size));
     }
 
     @PatchMapping("/{eventId}")

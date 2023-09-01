@@ -2,13 +2,13 @@ package ru.practicum.main_service.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.main_service.user.dto.NewUserRequest;
 import ru.practicum.main_service.user.dto.UserDto;
 import ru.practicum.main_service.user.service.UserService;
+import ru.practicum.main_service.utils.EwmPageRequest;
 import ru.practicum.main_service.utils.Messages;
 
 import javax.validation.Valid;
@@ -42,7 +42,7 @@ public class UserAdminController {
             @RequestParam(defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,
             @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) @Positive Integer size) {
         log.info(Messages.getUsers(ids));
-        return userService.getUsers(ids, PageRequest.of(from / size, size));
+        return userService.getUsers(ids, EwmPageRequest.of(from, size));
     }
 
     @DeleteMapping("/{userId}")
