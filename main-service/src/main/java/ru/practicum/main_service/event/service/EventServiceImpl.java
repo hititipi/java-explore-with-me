@@ -110,9 +110,9 @@ public class EventServiceImpl implements EventService {
                 event.setState(EventState.PUBLISHED);
                 event.setPublishedOn(LocalDateTime.now());
             } else if (updateEventAdminRequest.getStateAction() == EventStateAction.REJECT_EVENT) {
-                if (event.getState().equals(EventState.PUBLISHED)) {
+               /* if (event.getState().equals(EventState.PUBLISHED)) {
                     throw new ConflitException("Событие можно отклонить, только если оно еще не опубликовано.");
-                }
+                }*/
                 event.setState(EventState.CANCELED);
             }
         }

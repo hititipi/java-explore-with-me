@@ -12,11 +12,10 @@ import ru.practicum.main_service.utils.Messages;
 import ru.practicum.stats.dto.model.EndpointHitDto;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
-import static ru.practicum.main_service.utils.Constants.DATE_FORMAT;
+import static ru.practicum.main_service.utils.Constants.DATE_FORMATTER;
 
 @Service
 @Slf4j
@@ -52,19 +51,17 @@ public class StatsClient extends BaseClient {
         }
     }
 
-    public static final DateTimeFormatter DT_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
-
     private Map<String, Object> getStatsParameters(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
         if (uris == null) {
             return Map.of(
-                    "start", start.format(DT_FORMATTER),
-                    "end", end.format(DT_FORMATTER),
+                    "start", start.format(DATE_FORMATTER),
+                    "end", end.format(DATE_FORMATTER),
                     "unique", unique
             );
         } else {
             return Map.of(
-                    "start", start.format(DT_FORMATTER),
-                    "end", end.format(DT_FORMATTER),
+                    "start", start.format(DATE_FORMATTER),
+                    "end", end.format(DATE_FORMATTER),
                     "unique", unique,
                     "uris", String.join(", ", uris)
             );
