@@ -4,7 +4,6 @@ package ru.practicum.main_service.event.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.main_service.event.dto.EventFullDto;
@@ -49,7 +48,7 @@ public class EventPublicController {
             @RequestParam(defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,
             @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) @Positive Integer size,
             HttpServletRequest request) {
-        log.info(Messages.getPublicEvents() + "   "  + size);
+        log.info(Messages.getPublicEvents() + "   " + size);
         return eventService.getEventsByPublic(text, categories, paid, rangeStart, rangeEnd, onlyAvailable,
                 sort, EwmPageRequest.of(from, size), request);
     }

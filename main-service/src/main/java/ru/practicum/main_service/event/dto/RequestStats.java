@@ -1,7 +1,6 @@
 package ru.practicum.main_service.event.dto;
 
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter

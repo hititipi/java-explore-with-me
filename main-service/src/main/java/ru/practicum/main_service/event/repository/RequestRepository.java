@@ -2,7 +2,6 @@ package ru.practicum.main_service.event.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 import ru.practicum.main_service.event.dto.RequestStats;
 import ru.practicum.main_service.event.model.Request;
 import ru.practicum.main_service.event.model.RequestStatus;
