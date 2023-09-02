@@ -28,14 +28,12 @@ public class CategoryPublicController {
     private final CategoryService categoryService;
 
     @GetMapping("/{catId}")
-    @ResponseStatus(HttpStatus.OK)
     public CategoryDto getById(@PathVariable Long catId) {
         log.info(Messages.getCategory(catId));
         return CategoryMapper.toCategoryDto(categoryService.getCategory(catId));
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<CategoryDto> getAll(
             @RequestParam(defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,
             @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) @Positive Integer size) {

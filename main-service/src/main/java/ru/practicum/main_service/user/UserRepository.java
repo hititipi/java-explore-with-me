@@ -7,7 +7,6 @@ import ru.practicum.main_service.user.model.User;
 
 import java.util.List;
 
-@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByName(String name);

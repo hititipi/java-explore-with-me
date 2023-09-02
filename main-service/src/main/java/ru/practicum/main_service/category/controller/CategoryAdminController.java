@@ -27,7 +27,6 @@ public class CategoryAdminController {
     }
 
     @PatchMapping("/{catId}")
-    @ResponseStatus(HttpStatus.OK)
     public CategoryDto patch(@PathVariable long catId,
                              @Valid @RequestBody CategoryDto categoryDto) {
         log.info(Messages.patchCategory(catId));

@@ -31,7 +31,6 @@ public class EventPublicController {
     private final EventService eventService;
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public EventFullDto getEvent(@PathVariable Long id,
                                  HttpServletRequest request) {
         log.info(Messages.getPublicEvent(id));
@@ -39,7 +38,6 @@ public class EventPublicController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<EventShortDto> getEvents(
             @RequestParam(required = false) String text,
             @RequestParam(required = false) List<Long> categories,

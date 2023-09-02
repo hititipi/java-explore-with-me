@@ -31,21 +31,19 @@ public class EventAdminController {
     private final EventService eventService;
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<EventFullDto> getEvents(
             @RequestParam(required = false) List<Long> users,
             @RequestParam(required = false) List<EventState> states,
             @RequestParam(required = false) List<Long> categories,
             @RequestParam(required = false) @DateTimeFormat(pattern = DATE_FORMAT) LocalDateTime rangeStart,
             @RequestParam(required = false) @DateTimeFormat(pattern = DATE_FORMAT) LocalDateTime rangeEnd,
-            @RequestParam(required = false, defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,
-            @RequestParam(required = false, defaultValue = DEFAULT_PAGE_SIZE) @Positive Integer size) {
+            @RequestParam(defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,
+            @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) @Positive Integer size) {
         log.info(Messages.getAdminEvents());
         return eventService.getEventsByAdmin(users, states, categories, rangeStart, rangeEnd, EwmPageRequest.of(from, size));
     }
 
     @PatchMapping("/{eventId}")
-    @ResponseStatus(HttpStatus.OK)
     public EventFullDto patchEvent(@PathVariable Long eventId,
                                    @Valid @RequestBody UpdateEventAdminRequest updateEventAdminRequest) {
         log.info(Messages.patchEvent(eventId));

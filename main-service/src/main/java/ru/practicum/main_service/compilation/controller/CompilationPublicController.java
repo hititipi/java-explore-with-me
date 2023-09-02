@@ -27,14 +27,12 @@ public class CompilationPublicController {
     private final CompilationService compilationService;
 
     @GetMapping("/{compId}")
-    @ResponseStatus(HttpStatus.OK)
     public CompilationDto get(@PathVariable Long compId) {
         log.info(Messages.getCompilation(compId));
         return compilationService.get(compId);
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<CompilationDto> getAll(
             @RequestParam(required = false) Boolean pinned,
             @RequestParam(defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,

@@ -24,43 +24,36 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Column(nullable = false, length = MAX_LENGTH_EVENT_TITLE)
-    String title;
+    private String title;
     @Column(nullable = false, length = MAX_LENGTH_EVENT_ANNOTATION)
-    String annotation;
+    private String annotation;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    Category category;
+    private Category category;
     @Column(nullable = false, length = MAX_LENGTH_EVENT_DESCRIPTION)
-    String description;
+    private String description;
     @Column(nullable = false)
-    Boolean paid = false;
+    private Boolean paid = false;
     @Column(nullable = false)
-    Integer participantLimit;
-
+    private Integer participantLimit;
     @Column(nullable = false)
-    LocalDateTime eventDate;
-
+    private LocalDateTime eventDate;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
-    Location location;
-
+    private Location location;
     @Column(nullable = false)
-    LocalDateTime createdOn;
-
+    private LocalDateTime createdOn;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    EventState state;
-
-    LocalDateTime publishedOn;
-
+    private EventState state;
+    private LocalDateTime publishedOn;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    User initiator;
-
+    private User initiator;
     @Column(nullable = false)
-    Boolean requestModeration = true;
+    private Boolean requestModeration = true;
 
 }

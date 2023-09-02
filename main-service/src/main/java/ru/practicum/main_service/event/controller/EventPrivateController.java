@@ -30,7 +30,6 @@ public class EventPrivateController {
     private final RequestService requestService;
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<EventShortDto> getAll(
             @PathVariable Long userId,
             @RequestParam(defaultValue = DEFAULT_PAGE_FROM) @PositiveOrZero Integer from,
@@ -48,7 +47,6 @@ public class EventPrivateController {
     }
 
     @GetMapping("/{eventId}")
-    @ResponseStatus(HttpStatus.OK)
     public EventFullDto getEvent(
             @PathVariable Long userId,
             @PathVariable Long eventId) {
@@ -57,7 +55,6 @@ public class EventPrivateController {
     }
 
     @PatchMapping("/{eventId}")
-    @ResponseStatus(HttpStatus.OK)
     public EventFullDto patchEvent(
             @PathVariable Long userId,
             @PathVariable Long eventId,
@@ -67,7 +64,6 @@ public class EventPrivateController {
     }
 
     @GetMapping("/{eventId}/requests")
-    @ResponseStatus(HttpStatus.OK)
     public List<ParticipationRequestDto> getEventRequests(
             @PathVariable Long userId,
             @PathVariable Long eventId) {
@@ -76,7 +72,6 @@ public class EventPrivateController {
     }
 
     @PatchMapping("/{eventId}/requests")
-    @ResponseStatus(HttpStatus.OK)
     public EventRequestStatusUpdateResult patchEventRequests(
             @PathVariable Long userId,
             @PathVariable Long eventId,

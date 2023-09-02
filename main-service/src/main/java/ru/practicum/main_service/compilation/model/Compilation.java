@@ -26,10 +26,10 @@ public class Compilation {
     private String title;
     @Column(nullable = false)
     private Boolean pinned;
-    @ManyToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "compilations_events",
             joinColumns = @JoinColumn(name = "compilation_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "id"))
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @Column(name = "id")
     private List<Event> events;
 }
