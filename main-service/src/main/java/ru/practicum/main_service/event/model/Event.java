@@ -1,9 +1,6 @@
 package ru.practicum.main_service.event.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import ru.practicum.main_service.category.model.Category;
@@ -16,8 +13,9 @@ import static ru.practicum.main_service.utils.Constants.*;
 
 @Entity
 @Table(name = "events", schema = "public")
-@Data
 @Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Event {

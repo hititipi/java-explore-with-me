@@ -37,22 +37,14 @@ public class EventMapper {
 
     public EventFullDto toEventFullDto(Event event, Long confirmedRequests, Long views) {
         return EventFullDto.builder()
-                .id(event.getId())
-                .eventDate(event.getEventDate())
-                .paid(event.getPaid())
-                .title(event.getTitle())
+                .eventShortDto(toEventShortDto(event, confirmedRequests, views))
                 .description(event.getDescription())
                 .participantLimit(event.getParticipantLimit())
                 .publishedOn(event.getPublishedOn())
-                .annotation(event.getAnnotation())
                 .requestModeration(event.getRequestModeration())
                 .state(event.getState())
-                .category(CategoryMapper.toCategoryDto(event.getCategory()))
-                .confirmedRequests(confirmedRequests)
                 .createdOn(event.getCreatedOn())
-                .initiator(UserMapper.toUserShortDto(event.getInitiator()))
                 .location(LocationMapper.toLocationDto(event.getLocation()))
-                .views(views)
                 .build();
     }
 
