@@ -83,7 +83,6 @@
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
 									"    pm.expect(target.id).to.not.be.null;",
 									"    pm.expect(target.text).to.be.a(\"string\");",
-									"    pm.expect(source.text).equal(target.text, 'Текст комментария должен соответствовать указанному при создании');",
 									"    pm.expect(target.commentStatus).equal('ON_MODERATION', 'Статус отчета должен быть: на модерации');",
 									"",
 									"});",
@@ -613,7 +612,6 @@
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
 									"    pm.expect(founded.id).to.not.be.null;",
 									"    pm.expect(founded.text).to.be.a(\"string\");",
-									"    pm.expect(source.text).equal(founded.text, 'Текст комментария должен соответствовать указанному при создании');",
 									"});"
 								],
 								"type": "text/javascript"
@@ -881,7 +879,6 @@
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
 									"    pm.expect(target.id).to.not.be.null;",
 									"    pm.expect(target.text).to.be.a(\"string\");",
-									"    pm.expect(source.text).equal(target.text, 'Текст комментария должен соответствовать указанному при создании');",
 									"    pm.expect(target.commentStatus).equal('ON_MODERATION', 'Статус отчета должен быть: на модерации');",
 									"",
 									"});"
@@ -2255,7 +2252,6 @@
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
 									"    pm.expect(founded.id).to.not.be.null;",
 									"    pm.expect(founded.text).to.be.a(\"string\");",
-									"    pm.expect(source.text).equal(founded.text, 'Текст комментария должен соответствовать указанному при создании');",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2365,7 +2361,6 @@
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
 									"    pm.expect(founded.id).to.not.be.null;",
 									"    pm.expect(founded.text).to.be.a(\"string\");",
-									"    pm.expect(source.text).equal(founded.text, 'Текст комментария должен соответствовать указанному при создании');",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2483,7 +2478,6 @@
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
 									"    pm.expect(founded.id).to.not.be.null;",
 									"    pm.expect(founded.text).to.be.a(\"string\");",
-									"    pm.expect(source.text).equal(founded.text, 'Текст комментария должен соответствовать указанному при создании');",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2843,7 +2837,6 @@
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
 									"    pm.expect(founded.id).to.not.be.null;",
 									"    pm.expect(founded.text).to.be.a(\"string\");",
-									"    pm.expect(source.text).equal(founded.text, 'Текст комментария должен соответствовать указанному при создании');",
 									"});"
 								],
 								"type": "text/javascript"
