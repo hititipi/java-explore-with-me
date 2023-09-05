@@ -610,8 +610,8 @@
 									"});",
 									"",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
-									"    pm.expect(founded.id).to.not.be.null;",
-									"    pm.expect(founded.text).to.be.a(\"string\");",
+									"    pm.expect(target[0].id).to.not.be.null;",
+									"    pm.expect(target[0].text).to.be.a(\"string\");",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2250,8 +2250,8 @@
 									"});",
 									"",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
-									"    pm.expect(founded.id).to.not.be.null;",
-									"    pm.expect(founded.text).to.be.a(\"string\");",
+									"    pm.expect(target[0].id).to.not.be.null;",
+									"    pm.expect(target[0].text).to.be.a(\"string\");",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2359,8 +2359,8 @@
 									"});",
 									"",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
-									"    pm.expect(founded.id).to.not.be.null;",
-									"    pm.expect(founded.text).to.be.a(\"string\");",
+									"    pm.expect(target[0].id).to.not.be.null;",
+									"    pm.expect(target[0].text).to.be.a(\"string\");",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2476,8 +2476,8 @@
 									"});",
 									"",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
-									"    pm.expect(founded.id).to.not.be.null;",
-									"    pm.expect(founded.text).to.be.a(\"string\");",
+									"    pm.expect(target[0].id).to.not.be.null;",
+									"    pm.expect(target[0].text).to.be.a(\"string\");",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2835,8 +2835,8 @@
 									"});",
 									"",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
-									"    pm.expect(founded.id).to.not.be.null;",
-									"    pm.expect(founded.text).to.be.a(\"string\");",
+									"    pm.expect(target[0].id).to.not.be.null;",
+									"    pm.expect(target[0].text).to.be.a(\"string\");",
 									"});"
 								],
 								"type": "text/javascript"
