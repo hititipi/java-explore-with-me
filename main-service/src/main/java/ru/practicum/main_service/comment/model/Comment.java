@@ -24,7 +24,7 @@ public class Comment {
     private Long id;
     private String text;
     private LocalDateTime created;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User author;

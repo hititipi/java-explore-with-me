@@ -1,6 +1,6 @@
 # java-explore-with-me
 
-[Ссылка на PR](https://github.com/hititipi/java-explore-with-me/pull/6)
+[Ссылка на PR](hititipi/java-explore-with-me/pull/6)
 
 ## Описание
 Приложение предоставляет сервис для планирования интересных событий (афиша) и поиска компании для участия в них.

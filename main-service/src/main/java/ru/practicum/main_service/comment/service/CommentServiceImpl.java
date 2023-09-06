@@ -12,9 +12,9 @@ import ru.practicum.main_service.comment.model.CommentMapper;
 import ru.practicum.main_service.comment.model.CommentStatus;
 import ru.practicum.main_service.event.model.Event;
 import ru.practicum.main_service.event.model.EventState;
-import ru.practicum.main_service.event.service.EventService;
+import ru.practicum.main_service.event.repository.EventRepository;
+import ru.practicum.main_service.user.UserRepository;
 import ru.practicum.main_service.user.model.User;
-import ru.practicum.main_service.user.service.UserService;
 import ru.practicum.main_service.utils.EwmPageRequest;
 import ru.practicum.main_service.validation.ConflitException;
 import ru.practicum.main_service.validation.ValidationException;
@@ -30,14 +30,14 @@ import static ru.practicum.main_service.validation.ErrorMessages.*;
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
-    private final UserService userService;
-    private final EventService eventService;
+    private final UserRepository userRepository;
+    private final EventRepository eventRepository;
 
     @Override
     @Transactional
     public ResponceCommentDto createComment(Long userId, Long eventId, NewCommentDto newCommentDto) {
-        User user = userService.getUser(userId);
-        Event event = eventService.getEventById(eventId);
+        User user = getUser(userId);
+        Event event = getEventById(eventId);
         if (event.getState() != EventState.PUBLISHED) {
             throw new ConflitException(REQUEST_NOT_PUBLISHED_EVENT);
         }
@@ -48,7 +48,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional
     public ResponceCommentDto patchComment(Long userId, Long commentId, NewCommentDto newCommentDto) {
-        userService.getUser(userId);
+        getUser(userId);
         Comment comment = findComment(commentId);
         checkOwner(comment.getAuthor().getId(), userId);
         comment.setText(newCommentDto.getText());
@@ -62,7 +62,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<ResponceCommentDto> getAllCommentsByUser(Long userId, EwmPageRequest page) {
-        userService.getUser(userId);
+        getUser(userId);
         List<Comment> result = commentRepository.findAllByAuthorId(userId, page);
         return CommentMapper.toResponceCommentsDto(result);
     }
@@ -78,7 +78,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<ResponceCommentDto> getAllCommentByEvent(Long eventId, EwmPageRequest page) {
-        Event event = eventService.getEventById(eventId);
+        Event event = getEventById(eventId);
         if (event.getState() != EventState.PUBLISHED) {
             throw new ConflitException(REQUEST_NOT_PUBLISHED_EVENT);
         }
@@ -87,14 +87,14 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<ResponceCommentDto> getAllEventCommentsByAdmin(Long eventId, EwmPageRequest page) {
-        eventService.getEventById(eventId);
+        getEventById(eventId);
         return CommentMapper.toResponceCommentsDto(commentRepository.findAllByEventIdAndStatus(eventId, CommentStatus.ON_MODERATION, page));
     }
 
     @Override
     @Transactional
     public void deleteComment(Long userId, Long commentId) {
-        userService.getUser(userId);
+        getUser(userId);
         Comment comment = findComment(commentId);
         checkOwner(comment.getAuthor().getId(), userId);
         commentRepository.deleteById(commentId);
@@ -114,6 +114,16 @@ public class CommentServiceImpl implements CommentService {
         comment.setStatus(CommentStatus.APPROVED);
         return CommentMapper.toResponceCommentDto(commentRepository.save(comment));
 
+    }
+
+    private User getUser(long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ValidationException(HttpStatus.NOT_FOUND, RESOURCE_NOT_FOUND));
+    }
+
+    public Event getEventById(Long eventId) {
+        return eventRepository.findById(eventId)
+                .orElseThrow(() -> new ValidationException(HttpStatus.NOT_FOUND, RESOURCE_NOT_FOUND));
     }
 
     private Comment findComment(Long id) {
