@@ -119,5 +119,40 @@ public class Messages {
         return "Запрос на получение всех подборок";
     }
 
+    public static String addComment(Long userId, Long eventId) {
+        return String.format("Запрос на создание комментария: user_id = %d event_id = %d", userId, eventId);
+    }
+
+    public static String patchComment(Long userId, Long commentId) {
+        return String.format("Запрос на изменения комментария: user_id = %d comment_id = %d", userId, commentId);
+    }
+
+    public static String getAllComments(Long userId) {
+        return String.format("Запрос на получение комментариев: user_id = %d", userId);
+    }
+
+    public static String getAllComments() {
+        return "Запрос на получение комментариев";
+    }
+
+    public static String deleteComment(Long userId, Long commentId) {
+        return String.format("Запрос на удаление комментария: user_id = %d comment_id = %d", userId, commentId);
+    }
+
+    public static String deleteComment(Long commentId) {
+        return String.format("Запрос на удаление комментария: comment_id = %d", commentId);
+    }
+
+    public static String getComment(Long commentId) {
+        return String.format("Запрос на получение комментария: comment_id = %d", commentId);
+    }
+
+    public static String getCommentsForEvent(Long eventId) {
+        return String.format("Запрос на получение комментариев для события: event_id = %d", eventId);
+    }
+
+    public static String approveComment(Long commentId) {
+        return String.format("Запрос на одобрение комментармя: comment_id = %d", commentId);
+    }
 
 }

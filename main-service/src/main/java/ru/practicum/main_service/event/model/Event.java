@@ -27,7 +27,7 @@ public class Event {
     private String title;
     @Column(nullable = false, length = MAX_LENGTH_EVENT_ANNOTATION)
     private String annotation;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
     @Column(nullable = false, length = MAX_LENGTH_EVENT_DESCRIPTION)
@@ -38,7 +38,7 @@ public class Event {
     private Integer participantLimit;
     @Column(nullable = false)
     private LocalDateTime eventDate;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
     @Column(nullable = false)
@@ -47,7 +47,7 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private EventState state;
     private LocalDateTime publishedOn;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User initiator;
