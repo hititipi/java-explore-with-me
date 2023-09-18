@@ -8,3 +8,8 @@
 ## Endpoints
 - [API сервис статистики](./ewm-stats-service-spec.json)
 - [API основной сервис](./ewm-main-service-spec.json)
+- [API_комментарии](./ewm-main-comments.json)
+
+## Описание БД:
+![Диаграмма БД](./schema.png)
+
